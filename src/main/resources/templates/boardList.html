@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <table class="tb_col">
+        <tr>
+            <th>seq</th>
+            <th>seq</th>
+            <th>name</th>
+            <th>price</th>
+            <th>quantity</th>
+        </tr>
+        <tr th:each="board : ${list}">
+            <td th:text="${boardStat.index+1}"></td>
+            <td th:text="${board.boardNo}"></td>
+            <td th:text="${board.nickName}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.content}"></td>
+        </tr>
+</table>
+
+
+
+</body>
+</html>
