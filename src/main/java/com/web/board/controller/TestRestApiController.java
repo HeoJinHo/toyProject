@@ -28,8 +28,6 @@ public class TestRestApiController {
         BoardResultModel model = new BoardResultModel();
         model.setMsg("asdas5d");
 
-        if (model.getMsg().equals("asdasd"))
-            throw new RestException(ErrorType.REST_TEST);
         return Result.<BoardResultModel>builder().result(model).build();
     }
 
