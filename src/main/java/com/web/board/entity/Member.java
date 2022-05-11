@@ -1,5 +1,6 @@
 package com.web.board.entity;
 
+import com.web.board.construct.eum.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,12 @@ public class Member{
 
     private String name;
 
+    private String userId;
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     // Entity 는 아니지만 내장 타입으로 컬럼으로 사용가능
     @Embedded
     private Address address;
@@ -29,6 +36,11 @@ public class Member{
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 
-
+    public Member(String userId, String name, String password, Role role) {
+        this.userId = userId;
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
 
 }
