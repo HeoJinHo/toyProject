@@ -16,6 +16,10 @@ spring:
         format_sql: true
         use_sql_comments: true
 
+  output:
+    ansi:
+      enabled: always
+
   thymeleaf:
     cache: false
     check-template-location: true
@@ -26,5 +30,20 @@ mybatis:
   type-aliases-package: com.web.board
   mapper-locations: com.web.board.mapper/*.xml
 
+  # show sql data binding
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+    jdbc:
+      sql only: off
+      sliding: info
+      result-settable: info
+      audit: off
+      result: off
+      connection: off
 
 

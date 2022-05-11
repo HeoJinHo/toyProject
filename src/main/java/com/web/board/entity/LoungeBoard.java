@@ -1,9 +1,6 @@
 package com.web.board.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -12,6 +9,9 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "lounge_board")
 public class LoungeBoard {
     @Column(name = "BOARD_NO")
@@ -100,9 +100,5 @@ public class LoungeBoard {
 
     @Column(name = "REG_ADMIN_NO")
     private Long regAdminNo;
-
-    private LoungeBoard() {
-
-    }
 
 }
