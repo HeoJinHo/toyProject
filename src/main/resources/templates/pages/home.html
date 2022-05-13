@@ -1,21 +1,53 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title>Home</title>
-</head>
-<body>
-<h1>Home Page</h1>
-<hr>
-<div>
-  <a sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
-  <a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
-  <a sec:authorize="isAnonymous()" th:href="@{/signup}">회원가입</a>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+
+<div layout:fragment="contents" class="content-wrapper">
+
+
+  <h1>상품페이지</h1>
+
+
+
+
+
+  <section class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+
+            <div class="box-body">
+              <table class="table table-bordered table-striped data-table">
+
+                <thead>
+                  <tr>
+                    <th class="text-center col-md-1" style="width: 5%;">번호</th>
+                    <th class="text-center col-md-2" style="width: 10%;">상품명</th>
+                    <th class="text-center col-md-2">금액</th>
+                    <th class="text-center col-md-2">재고수량</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr th:each="item, index : ${page.content}" class="topBoardColor trdata">
+                    <td th:text="${index.index+1}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.price}"></td>
+                    <td th:text="${item.stockQuantity}"></td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
-<div>
-  <a th:href="@{/member/info}">내 정보</a>
-  <a th:href="@{/admin}">관리자</a>
-</div>
-</body>
 </html>

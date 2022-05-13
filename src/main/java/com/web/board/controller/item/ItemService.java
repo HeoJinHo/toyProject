@@ -2,6 +2,7 @@ package com.web.board.controller.item;
 
 import com.web.board.construct.eum.BType;
 import com.web.board.controller.item.dto.SaveItemDTO;
+import com.web.board.dsl.ItemDsl;
 import com.web.board.entity.item.Alubum;
 import com.web.board.entity.item.Book;
 import com.web.board.entity.item.Movie;
@@ -11,7 +12,9 @@ import com.web.board.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.transaction.Transactional;
 
@@ -25,7 +28,16 @@ public class ItemService {
     private final AlubumRepository alubumRepository;
     private final MovieRepository movieRepository;
 
+    private final ItemDsl itemDsl;
+
+
     private final ModelMapper modelMapper;
+
+
+    public void getItemList(Model model, Pageable pageable) {
+        model.addAttribute("page", itemDsl.getItemList(pageable));
+    }
+
 
     /**
      * 상품 저장

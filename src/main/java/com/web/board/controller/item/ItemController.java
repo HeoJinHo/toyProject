@@ -3,6 +3,7 @@ package com.web.board.controller.item;
 import com.web.board.controller.item.dto.SaveItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ public class ItemController {
 
 
     @GetMapping("/save")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     public String itemSavePage() {
         return "item/item";
     }
@@ -25,6 +27,7 @@ public class ItemController {
 
 
     @PostMapping("/save")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     public String saveItem(SaveItemDTO saveItemDTO) {
         log.info("============= /save =============");
         log.info("============= saveItemDTO ============= : ", saveItemDTO);

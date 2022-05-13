@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<header class="main-header" layout:fragment="header">
+
+
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top">
+    <div>
+      <a sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
+      <a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
+      <a sec:authorize="isAnonymous()" th:href="@{/signup}">회원가입</a>
+    </div>
+    <div>
+      <a th:href="@{/member/info}">내 정보</a>
+      <a th:href="@{/admin}">관리자</a>
+    </div>
+  </nav>
+</header>
+</html>

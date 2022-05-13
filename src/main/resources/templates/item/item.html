@@ -60,7 +60,7 @@
     <div class="container">
 
         <form method="POST" action="/item/save">
-
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <div class="form-group">
                 <br>
                 <br>

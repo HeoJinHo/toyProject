@@ -1,6 +1,6 @@
 package com.web.board.config.memberSercurity;
 
-import com.web.board.dto.MemberDTO;
+import com.web.board.config.memberSercurity.dto.MemberDTO;
 import com.web.board.entity.Member;
 import com.web.board.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;

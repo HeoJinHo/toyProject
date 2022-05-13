@@ -1,4 +1,4 @@
-package com.web.board.dto;
+package com.web.board.config.memberSercurity.dto;
 
 import com.web.board.construct.eum.Role;
 import com.web.board.entity.Member;
