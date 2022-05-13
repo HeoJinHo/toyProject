@@ -51,5 +51,20 @@ logging:
       audit: off
       result: off
       connection: off
+      
+
+#AWS S3 설정
+cloud:
+  aws:
+    credentials:
+      access-key: ${awsUser.key}
+      secret-key: ${awsUserSecreat.key}
+    s3:
+      bucket: toyproject-burket
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+
 
 

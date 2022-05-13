@@ -31,6 +31,7 @@ public class ItemDsl {
                                 ItemDTO.class,
                                 item.id,
                                 item.name,
+                                item.imageUrl,
                                 item.price,
                                 item.stockQuantity
                         )

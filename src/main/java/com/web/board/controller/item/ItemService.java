@@ -1,5 +1,6 @@
 package com.web.board.controller.item;
 
+import com.web.board.component.S3Uploader;
 import com.web.board.construct.eum.BType;
 import com.web.board.controller.item.dto.SaveItemDTO;
 import com.web.board.dsl.ItemDsl;
@@ -15,8 +16,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -27,6 +30,8 @@ public class ItemService {
     private final BookRepository bookRepository;
     private final AlubumRepository alubumRepository;
     private final MovieRepository movieRepository;
+
+    private final S3Uploader s3Uploader;
 
     private final ItemDsl itemDsl;
 
@@ -44,9 +49,14 @@ public class ItemService {
      * @param saveItemDTO 상품 저장 DTO
      */
     @Transactional
-    public void saveItem(SaveItemDTO saveItemDTO) {
+    public void saveItem(SaveItemDTO saveItemDTO, MultipartFile multipartFile) {
 
 
+        String imageUrl = null;
+        if (!Objects.equals(multipartFile.getOriginalFilename(), ""))
+            imageUrl = imageUpLoad(multipartFile);
+
+        saveItemDTO.setImageUrl(imageUrl);
         if (saveItemDTO.getBType().equals(BType.BOOK.getValue())) {
             Book item = modelMapper.map(saveItemDTO, Book.class);
             bookRepository.save(item);
@@ -59,6 +69,12 @@ public class ItemService {
         }
 
 
+    }
+
+    public String imageUpLoad(MultipartFile multipartFile) {
+        String uuid = s3Uploader.uploadFileV1(multipartFile);
+        log.info("============= uuid ============= : {} ", uuid);
+        return uuid;
     }
 
 }

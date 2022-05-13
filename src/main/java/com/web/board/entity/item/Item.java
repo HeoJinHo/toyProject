@@ -27,6 +27,8 @@ public abstract class Item {
 
     private int stockQuantity;
 
+    private String imageUrl;
+
     @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
     private List<Category> categories = new ArrayList<>();
 

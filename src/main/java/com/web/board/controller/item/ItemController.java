@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Slf4j
 @Controller
@@ -28,11 +32,12 @@ public class ItemController {
 
     @PostMapping("/save")
     @PreAuthorize("hasAnyRole('ROLE_USER')")
-    public String saveItem(SaveItemDTO saveItemDTO) {
+    public String saveItem(SaveItemDTO saveItemDTO, @RequestParam(value = "images", required = false) MultipartFile multipartFile)  throws IOException {
         log.info("============= /save =============");
-        log.info("============= saveItemDTO ============= : ", saveItemDTO);
-        itemService.saveItem(saveItemDTO);
-        return "item/item";
+        log.info("============= saveItemDTO ============= : {} ", saveItemDTO);
+        itemService.saveItem(saveItemDTO, multipartFile);
+
+        return "redirect:/";
     }
 
 }

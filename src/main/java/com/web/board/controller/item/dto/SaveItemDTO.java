@@ -32,5 +32,7 @@ public class SaveItemDTO {
 
     private int stockQuantity;
 
+    private String imageUrl;
+
 
 }

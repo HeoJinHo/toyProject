@@ -59,7 +59,7 @@
 <body>
     <div class="container">
 
-        <form method="POST" action="/item/save">
+        <form method="POST" action="/item/save" enctype="multipart/form-data">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <div class="form-group">
                 <br>
@@ -96,7 +96,7 @@
                 <input type="text" th:name="stockQuantity" id="select05" class="form-control">
                 <br>
 
-
+                <input type="file" name="images">
                 <button type="submit" class="btn btn-primary" style="float: right;">저장</button>
             </div>
         </form>
