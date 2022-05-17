@@ -5,7 +5,6 @@ import com.web.board.construct.ErrorType;
 import com.web.board.construct.RestException;
 import com.web.board.entity.Category;
 import com.web.board.entity.Member;
-import com.web.board.entity.item.Alubum;
 import com.web.board.repository.CategoryRepository;
 import com.web.board.repository.ItemRepository;
 import org.junit.jupiter.api.DisplayName;

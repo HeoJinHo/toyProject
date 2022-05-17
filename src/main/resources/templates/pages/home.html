@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout/default}">
 
 <div layout:fragment="contents" class="content-wrapper">
@@ -19,6 +20,13 @@
           <div class="box">
 
             <div class="box-body">
+              <div sec:authorize="isAuthenticated()" style="float: right;">
+                <button type="button" class="btn btn-primary" onclick="location.href='/item/save';">상품등록</button>
+                <br>
+              </div>
+              <br>
+
+
               <table class="table table-bordered table-striped data-table">
 
                 <thead>
@@ -34,9 +42,9 @@
                 <tbody>
                   <tr th:each="item, index : ${page.content}" class="topBoardColor trdata">
                     <td th:text="${index.index+1}"></td>
-                    <td th:text="${item.name}"></td>
-                    <td th:text="${item.price}"></td>
-                    <td th:text="${item.stockQuantity}"></td>
+                    <td th:text="${item.itemName}"></td>
+                    <td th:text="${item.itemPrice}"></td>
+                    <td th:text="${item.itemStockCnt}"></td>
 <!--                    <td><img th:src="${item.imageUrl}" style="width: 50px; height: 50px;"></td>-->
                   </tr>
                 </tbody>

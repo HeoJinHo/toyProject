@@ -44,6 +44,14 @@ dependencies {
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.2'
 
 
+	// JWT 관련 dependencie 추가
+	implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.5.2'
+
+
+
+
+
+
 }
 
 tasks.named('test') {

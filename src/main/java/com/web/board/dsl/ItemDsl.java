@@ -29,17 +29,16 @@ public class ItemDsl {
         QueryResults<ItemDTO> paging = queryFactory.select(
                         Projections.fields(
                                 ItemDTO.class,
-                                item.id,
-                                item.name,
-                                item.imageUrl,
-                                item.price,
-                                item.stockQuantity
+                                item.itemId,
+                                item.itemName,
+                                item.itemPrice,
+                                item.itemStockCnt
                         )
                 )
                 .from(item)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .orderBy(item.id.desc())
+                .orderBy(item.itemId.desc())
                 .fetchResults();
 
         List<ItemDTO> content = paging.getResults();

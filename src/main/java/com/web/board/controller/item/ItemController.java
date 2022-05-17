@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -32,7 +33,7 @@ public class ItemController {
 
     @PostMapping("/save")
     @PreAuthorize("hasAnyRole('ROLE_USER')")
-    public String saveItem(SaveItemDTO saveItemDTO, @RequestParam(value = "images", required = false) MultipartFile multipartFile)  throws IOException {
+    public String saveItem(SaveItemDTO saveItemDTO, @RequestParam(value = "images", required = false) List<MultipartFile> multipartFile)  throws IOException {
         log.info("============= /save =============");
         log.info("============= saveItemDTO ============= : {} ", saveItemDTO);
         itemService.saveItem(saveItemDTO, multipartFile);

@@ -9,30 +9,22 @@ import lombok.Setter;
 @Getter @Setter
 public class SaveItemDTO {
 
-    /*BOOK*/
-    private String author;
-    private String isbn;
+    private Long itemId;
 
+    private String itemName;
 
-    /*MOVIE*/
-    private String director;
-    private String actor;
+    private String itemContent;
 
+    private int itemPrice;
 
-    /*ALUBUM*/
-    private String artist;
-    private String etc;
+    private int itemStockCnt;
 
-    private String bType;
+    private int itemSalePercentage;
 
+    private int itemPointPrice;
 
-    private String name;
+    private Long categoryId;
 
-    private int price;
-
-    private int stockQuantity;
-
-    private String imageUrl;
 
 
 }

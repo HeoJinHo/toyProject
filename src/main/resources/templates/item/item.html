@@ -11,45 +11,45 @@
 
     $(function () {
 
-        $("#btypeId").change(function () {
-            var bType = $("#btypeId").val();
-            var thisId = "#formSelector";
-
-            var inputType = "";
-
-            $(thisId).empty();
-
-            if (bType === "A") {
-
-                inputType = "            <label class=\"col-form-label\" for=\"select01\">가수</label>\n" +
-                    "            <input type=\"text\" name=\"artist\" id=\"select01\" class=\"form-control\">\n" +
-                    "            <br>\n" +
-                    "\n" +
-                        "            <label class=\"col-form-label\" for=\"select02\">비고</label>\n" +
-                    "            <input type=\"text\" name=\"etc\" id=\"select02\" class=\"form-control\">\n" ;
-
-            }else if (bType === "B") {
-
-                inputType = "            <label class=\"col-form-label\" for=\"select01\">저자</label>\n" +
-                    "            <input type=\"text\" name=\"author\" id=\"select01\" class=\"form-control\">\n" +
-                    "            <br>\n" +
-                    "\n" +
-                    "            <label class=\"col-form-label\" for=\"select02\">출판사</label>\n" +
-                    "            <input type=\"text\" name=\"isbn\" id=\"select02\" class=\"form-control\">\n" ;
-
-            }else if (bType === "M") {
-
-                inputType = "            <label class=\"col-form-label\" for=\"select01\">감독</label>\n" +
-                    "            <input type=\"text\" name=\"director\" id=\"select01\" class=\"form-control\">\n" +
-                    "            <br>\n" +
-                    "\n" +
-                    "            <label class=\"col-form-label\" for=\"select02\">배우</label>\n" +
-                    "            <input type=\"text\" name=\"actor\" id=\"select02\" class=\"form-control\">\n" ;
-            }
-
-            $(thisId).prepend(inputType);
-
-        });
+        // $("#btypeId").change(function () {
+        //     var bType = $("#btypeId").val();
+        //     var thisId = "#formSelector";
+        //
+        //     var inputType = "";
+        //
+        //     $(thisId).empty();
+        //
+        //     if (bType === "A") {
+        //
+        //         inputType = "            <label class=\"col-form-label\" for=\"select01\">가수</label>\n" +
+        //             "            <input type=\"text\" name=\"artist\" id=\"select01\" class=\"form-control\">\n" +
+        //             "            <br>\n" +
+        //             "\n" +
+        //                 "            <label class=\"col-form-label\" for=\"select02\">비고</label>\n" +
+        //             "            <input type=\"text\" name=\"etc\" id=\"select02\" class=\"form-control\">\n" ;
+        //
+        //     }else if (bType === "B") {
+        //
+        //         inputType = "            <label class=\"col-form-label\" for=\"select01\">저자</label>\n" +
+        //             "            <input type=\"text\" name=\"author\" id=\"select01\" class=\"form-control\">\n" +
+        //             "            <br>\n" +
+        //             "\n" +
+        //             "            <label class=\"col-form-label\" for=\"select02\">출판사</label>\n" +
+        //             "            <input type=\"text\" name=\"isbn\" id=\"select02\" class=\"form-control\">\n" ;
+        //
+        //     }else if (bType === "M") {
+        //
+        //         inputType = "            <label class=\"col-form-label\" for=\"select01\">감독</label>\n" +
+        //             "            <input type=\"text\" name=\"director\" id=\"select01\" class=\"form-control\">\n" +
+        //             "            <br>\n" +
+        //             "\n" +
+        //             "            <label class=\"col-form-label\" for=\"select02\">배우</label>\n" +
+        //             "            <input type=\"text\" name=\"actor\" id=\"select02\" class=\"form-control\">\n" ;
+        //     }
+        //
+        //     $(thisId).prepend(inputType);
+        //
+        // });
 
     });
 
@@ -61,42 +61,38 @@
 
         <form method="POST" action="/item/save" enctype="multipart/form-data">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <input type="text" name="categoryId" value="1">
             <div class="form-group">
-                <br>
-                <br>
-                <label class="col-form-label">상품종류</label>
-                <select class="form-control" id="btypeId" th:name="bType">
-                    <option th:each="btype : ${T(com.web.board.construct.eum.BType).values()}"
-                            th:value="${btype.value}"
-                            th:text="${btype.name}">
-                        val
-                    </option>
-                </select>
                 <br>
 
                 <div id="formSelector">
-                    <label class="col-form-label" for="select01">가수</label>
-                    <input type="text" th:name="artist" id="select01" class="form-control">
+                    <label class="col-form-label" for="select01">상품명</label>
+                    <input type="text" th:name="itemName" id="select01" class="form-control">
                     <br>
 
-                    <label class="col-form-label" for="select02">비고</label>
-                    <input type="text" th:name="etc" id="select02" class="form-control">
+                    <label class="col-form-label" for="select02">상품설명</label>
+                    <input type="text" th:name="itemContent" id="select02" class="form-control">
                 </div>
                 <br>
 
-                <label class="col-form-label" for="select03">상품명</label>
-                <input type="text" th:name="name" id="select03" class="form-control">
-                <br>
-
                 <label class="col-form-label" for="select04">가격</label>
-                <input type="text" th:name="price" id="select04" class="form-control">
+                <input type="text" th:name="itemPrice" id="select04" class="form-control">
                 <br>
 
                 <label class="col-form-label" for="select05">등록 수량</label>
-                <input type="text" th:name="stockQuantity" id="select05" class="form-control">
+                <input type="text" th:name="itemStockCnt" id="select05" class="form-control">
                 <br>
 
-                <input type="file" name="images">
+                <label class="col-form-label" for="select06">상품 할인률</label>
+                <input type="text" th:name="itemSalePercentage" id="select06" class="form-control">
+                <br>
+
+                <label class="col-form-label" for="select07">구매시 포인트 적립금액</label>
+                <input type="text" th:name="itemPointPrice" id="select07" class="form-control">
+                <br>
+
+
+                <input type="file" name="images" multiple>
                 <button type="submit" class="btn btn-primary" style="float: right;">저장</button>
             </div>
         </form>

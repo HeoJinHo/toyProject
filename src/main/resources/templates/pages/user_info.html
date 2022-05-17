@@ -10,6 +10,7 @@
 <hr>
 <span sec:authentication="name"></span> 님 반갑습니다.
 <div sec:authentication="principal.authorities"></div>
+<div class="card-body" sec:authorize="isAuthenticated()"></div>
 
 <a th:href="@{/}">홈으로 가기</a>
 </body>

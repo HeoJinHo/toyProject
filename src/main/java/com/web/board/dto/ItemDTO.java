@@ -10,15 +10,13 @@ import lombok.*;
 @NoArgsConstructor
 public class ItemDTO {
 
-    String dType;
 
-    private Long id;
+    private Long itemId;
 
-    private String name;
-    private String imageUrl;
+    private String itemName;
 
-    private int price;
+    private int itemPrice;
 
-    private int stockQuantity;
+    private int itemStockCnt;
 
 }

@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-
 public class Category {
 
     @Id
@@ -21,12 +20,9 @@ public class Category {
     private String name;
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "category_item",
-        joinColumns = @JoinColumn(name = "category_id"),
-        inverseJoinColumns = @JoinColumn(name = "item_id"))
-    private List<Item> items = new ArrayList<>();
 
+    @OneToOne(mappedBy = "category", fetch = FetchType.LAZY)
+    private Item item;
 
     @ManyToOne
     @JoinColumn(name = "parent_id")

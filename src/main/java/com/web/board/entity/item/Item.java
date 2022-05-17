@@ -1,39 +1,67 @@
 package com.web.board.entity.item;
 
 import com.web.board.entity.Category;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "dtype")
-public abstract class Item {
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Builder
+public class Item {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
-    private Long id;
+    private Long itemId;
+
+    @Column(name = "item_name")
+    private String itemName;
+
+    @Column(name = "item_content")
+    private String itemContent;
+
+    @Column(name = "item_price")
+    private int itemPrice;
+
+    @Column(name = "item_stock_cnt")
+    private int itemStockCnt;
+
+    @Column(name = "item_sale_percentage")
+    private int itemSalePercentage;
+
+    @Column(name = "item_point_price")
+    private int itemPointPrice;
 
 
-    private String name;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    private int price;
-
-    private int stockQuantity;
-
-    private String imageUrl;
-
-    @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
-    private List<Category> categories = new ArrayList<>();
+    @OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
+    private List<ItemImage> itemImages;
 
 
+    @Column(name="reg_date")
+    @CreationTimestamp
+    private LocalDateTime regDate;
+
+    @Column(name="reg_member_no", precision=10)
+    private Long regMemberNo;
 
 
+    @Column(name="mod_member_date")
+    @UpdateTimestamp
+    private LocalDateTime modMemberDate;
+
+
+    @Column(name="mod_member_no", precision=10)
+    private Long modMemberNo;
 
 }

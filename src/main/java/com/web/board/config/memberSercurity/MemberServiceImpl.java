@@ -6,7 +6,6 @@ import com.web.board.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,7 +34,23 @@ public class MemberServiceImpl implements MemberService {
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         System.out.println("authorities = " + authorities);
 
-        return new User(memberEntity.getName(), memberEntity.getPassword(), authorities);
+        MemberDTO quickGuideUser = new MemberDTO();
+        quickGuideUser.setId(memberEntity.getId());
+        quickGuideUser.setUserId(memberEntity.getUserId());
+        quickGuideUser.setUsername(memberEntity.getName());
+        quickGuideUser.setUsername(memberEntity.getName());
+        quickGuideUser.setPassword(memberEntity.getPassword());
+        quickGuideUser.setAuthorities(authorities);
+        quickGuideUser.setEnabled(true);
+        quickGuideUser.setAccountNonExpired(true);
+        quickGuideUser.setAccountNonLocked(true);
+        quickGuideUser.setCredentialsNonExpired(true);
+
+
+
+
+
+        return quickGuideUser;
     }
 
     @Transactional
@@ -48,5 +63,9 @@ public class MemberServiceImpl implements MemberService {
         member.setPassword(passwordEncoder.encode(member.getPassword()));
         return memberDao.save(member).getId().intValue();
     }
+
+
+
+
 
 }
