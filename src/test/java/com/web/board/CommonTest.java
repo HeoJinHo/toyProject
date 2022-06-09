@@ -1,8 +1,6 @@
 package com.web.board;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.web.board.construct.ErrorType;
-import com.web.board.construct.RestException;
 import com.web.board.entity.Category;
 import com.web.board.entity.Member;
 import com.web.board.repository.CategoryRepository;
@@ -15,7 +13,9 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 
 import javax.transaction.Transactional;
-import java.util.List;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Scanner;
 
 import static com.web.board.entity.QMember.member;
 import static com.web.board.entity.item.QItem.item;
@@ -37,23 +37,7 @@ public class CommonTest {
     JPAQueryFactory queryFactory;
 
 
-    @Test
-    @Transactional
-    public void contextLoads() throws Throwable {
 
-
-        Long itemId = 4L;
-
-        Alubum alubum = (Alubum) itemRepository.findById(itemId).orElseThrow(() -> new RestException(ErrorType.REST_TEST));
-
-
-        List<Category> categories = alubum.getCategories();
-        System.out.println("categories = " + categories);
-
-        assertThat(alubum.getId()).isEqualTo(itemId);
-
-
-    }
 
 
     @Test
@@ -111,6 +95,83 @@ public class CommonTest {
         //the
 
     }
+
+
+    @Test
+    @DisplayName("계산기 테스트")
+    public void calculatorTest(){
+        //given
+        Scanner sc = new Scanner(System.in);
+
+        //when
+        System.out.println("첫번째 숫자를 입력해주세요.");
+        int firstNumber = sc.nextInt();
+
+        System.out.println("계산할 연산자를 입력해주세요.");
+        String ttt = sc.nextLine();
+
+
+        System.out.println("두번째 숫자를 입력해주세요.");
+        int secondNumber = sc.nextInt();
+
+        //then
+
+        int finalNumber = 0;
+
+        switch (ttt) {
+            case "+" : finalNumber = firstNumber + secondNumber;
+            break;
+            case "-" : finalNumber = firstNumber - secondNumber;
+                break;
+            case "/" : finalNumber = firstNumber / secondNumber;
+                break;
+            case "*" : finalNumber = firstNumber * secondNumber;
+                break;
+        }
+
+        System.out.println("계산 결과입니다.");
+        System.out.println("finalNumber = " + finalNumber);
+
+    }
+
+
+
+
+
+
+    @Test
+    @DisplayName("이모지 길이 테스트")
+    public void emojiTest() throws UnsupportedEncodingException {
+        //given
+        int length = "👩‍🚀".length();
+        int length2 = "😀".length();
+        int length3 = "👩‍👩‍👦‍👦".length();
+
+        //when
+        System.out.println("length = " + length);
+        System.out.println("length2 = " + length2);
+        System.out.println("length3 = " + length3);
+        //the
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
