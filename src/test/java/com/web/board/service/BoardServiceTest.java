@@ -2,7 +2,6 @@ package com.web.board.service;
 
 import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.web.board.config.ParameterStoreProperties;
 import com.web.board.construct.Person;
 import com.web.board.entity.LoungeBoard;
 import com.web.board.mapper.BoardMapper;
@@ -93,20 +92,6 @@ public class BoardServiceTest {
 
     }
 
-    @Autowired
-    private ParameterStoreProperties properties;
-
-    @Test
-    @DisplayName("파리머터 스토어 테스트")
-    public void parameter_store_test(){
-        //given
-
-
-        //when
-
-        //then
-        Assertions.assertThat(properties.getEncryptKey()).isEqualTo("testtest");
-    }
 
 
 }
