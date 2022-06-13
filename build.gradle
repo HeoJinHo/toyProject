@@ -25,6 +25,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.3.1'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws-parameter-store-config'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	compileOnly 'org.projectlombok:lombok'
@@ -54,6 +55,15 @@ dependencies {
 
 }
 
+
+ext {
+	set('springCloudVersion', "Hoxton.SR6")
+}
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
 tasks.named('test') {
 	useJUnitPlatform()
 }
