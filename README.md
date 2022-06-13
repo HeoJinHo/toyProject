@@ -13,4 +13,5 @@
 - QueryDSL
 - thymeleaf
 - AWS RDS
-
+- AWS EC2
+- AWS S3
