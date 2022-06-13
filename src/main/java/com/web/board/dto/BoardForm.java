@@ -14,12 +14,4 @@ public class BoardForm {
     private String author;
 
 
-    @Override
-    public String toString() {
-        return "BoardForm{" +
-                "title='" + title + '\'' +
-                ", comments='" + comments + '\'' +
-                ", author='" + author + '\'' +
-                '}';
-    }
 }

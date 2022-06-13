@@ -57,6 +57,9 @@ public class ItemService extends BaseService {
     @Transactional
     public void saveItem(SaveItemDTO saveItemDTO, List<MultipartFile> multipartFile) {
 
+        log.info("============= saveItem ==============");
+        log.debug("============= saveItemDTO ============= {}", saveItemDTO);
+        log.debug("============= multipartFile ============= {}", multipartFile);
         Long memberNo = getMemberNo();
 
 

@@ -18,6 +18,12 @@ public class BoardController {
     
     private final BoardService boardService;
 
+    /**
+     * 게시글 조회 리스트
+     * @param model : 모델
+     * @param pageable : 페이징 객체
+     * @return 페이지
+     */
     @GetMapping("/board")
     public String getBoard(Model model, @PageableDefault(size = 30, sort = "userNo", direction = Sort.Direction.DESC) Pageable pageable){
 
@@ -26,6 +32,10 @@ public class BoardController {
         return "boardList";
     }
 
+    /**
+     * 게시글 등록 화면
+     * @return : 페이지
+     */
     @GetMapping("/form/board")
     public String formBoard() {
 
@@ -33,9 +43,13 @@ public class BoardController {
     }
 
 
+    /**
+     * 게시글 등록
+     * @param boardForm : 게시글 등록 객체
+     * @return : 등록 후 페이지
+     */
     @PostMapping("/board/insert")
     public String insertBoard(BoardForm boardForm) {
-        System.out.println("boardForm = " + boardForm.toString());
         boardService.insertBoard(boardForm);
         return "pages/formBoard";
     }
