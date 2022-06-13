@@ -19,11 +19,20 @@ public class BoardService {
 
     private final TestBoardDAO testBoardDAO;
 
+    /**
+     * 게시글 조회 페이징
+     * @param pageable : 페이징 객체
+     * @return : 페이징 결과
+     */
     public Page<LoungeBoard> getBoard(Pageable pageable) {
 
         return loungeBoardRepository.findAll(pageable);
     }
 
+    /**
+     * 게시글 등록
+     * @param boardForm : 등록 폼 객체
+     */
     @Transactional
     public void insertBoard(BoardForm boardForm) {
         testBoardDAO.insertBoard(boardForm);
