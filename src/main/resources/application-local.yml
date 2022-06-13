@@ -5,9 +5,9 @@ spring:
     active: ${profile}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${test.url}
-    username: ${test.id}
-    password: ${test.pw}
+    url: ${test_url}
+    username: ${test_id}
+    password: ${test_pw}
   jpa:
     hibernate:
       ddl_auto: none
@@ -59,8 +59,8 @@ logging:
 cloud:
   aws:
     credentials:
-      access-key: ${awsUser.key}
-      secret-key: ${awsUserSecreat.key}
+      access-key: ${awsUser_key}
+      secret-key: ${awsUserSecreat_key}
     s3:
       bucket: toyproject-burket
     region:
